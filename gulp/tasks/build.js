@@ -53,7 +53,7 @@ gulp.task('build:development', function () {
 gulp.task('build:production', function () {
 	return runSeq(
 		'build',
-		['bundle','inject'],
+		['bundle','inject:production'],
 		'minify',
 		'deploy:production'
 		);

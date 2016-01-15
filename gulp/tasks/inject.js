@@ -24,3 +24,7 @@ function injectFn (env) {
 gulp.task('inject', function () {
 	return injectFn();
 }); 
+
+gulp.task('inject:production', function () {
+	return injectFn("production");
+}); 
