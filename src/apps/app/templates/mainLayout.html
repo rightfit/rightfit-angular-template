@@ -1,0 +1,9 @@
+<div md-theme="{{ mlCtrl.primaryTheme }}" flex layout="column">
+	<div ui-view="header"> </div>
+	<section flex layout class="overflow-hidden">
+		<div layout ui-view="nav"> </div> 
+		<div layout="column" flex ui-view="content" class="overflow-hidden"> </div>
+	</section>	
+	<div ui-view="footer"> </div> 
+</div>
+   

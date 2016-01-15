@@ -1,0 +1,15 @@
+<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z1 home-sidenav" 
+					md-component-id="mainLeftNav" 
+					md-is-locked-open="$mdMedia('gt-md')">
+					
+  <img  src="/public/img/ComriseLogo.png" class="logo"> 
+  <md-divider ></md-divider>
+  <md-content  flex>
+      
+    <md-list> 
+    	<md-list-item ng-repeat="menu in navCtrl.options.menu">
+    		<md-button  href="" ui-sref-active="md-primary"  ui-sref="{{::menu.state}}"> {{ ::menu.name }} </md-button>
+    	</md-list-view>
+    </md-list>    
+  </md-content>
+</md-sidenav>

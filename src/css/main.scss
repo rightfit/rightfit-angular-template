@@ -1,0 +1,115 @@
+/* Variables */
+$md_layout_padding: 8px; //default padding for md layout padding option
+
+
+/*Mixings*/
+
+@mixin fade-out-gradiant() {
+	$solid: rgba(255,255,255,1);
+	$trans: rgba(255,255,255,0);
+	background: none; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient($trans, $solid);
+    background: -o-linear-gradient($trans, $solid); 
+    background: -moz-linear-gradient($trans, $solid); 
+    background: linear-gradient($trans, $solid);
+}
+
+@mixin contained-box($offset: 0) {
+	
+	position:absolute;
+	top:$offset;
+	bottom:$offset;
+	left:$offset;
+	right:$offset;
+	
+}
+
+/*
+	MISC
+	Agnostic css for convenient class styling
+*/
+
+.overflow-hidden {
+	overflow: hidden;
+}
+
+/*
+	APP CSS
+*/
+.home-sidenav {
+
+	padding: 0;
+	
+	.md-button {
+		
+		min-height: 48px;
+		line-height:48px;
+		border-radius: 0;
+		width: 100%;
+		margin:0;
+		
+	}
+	
+}
+
+.container{
+	height:100%;
+}
+
+/* Small fix to make md-sidenav obey flex-layout */
+md-sidenav.md-closed.md-locked-open {
+	 z-index:1; 	
+}
+.error-message {
+	color: rgb(244,67,54);
+	/*height:60px;*/
+	padding:5%;
+} 
+
+.footer {
+	position: fixed;
+	bottom:0;
+	z-index:1;
+	height: 40px;
+	width:100%;
+	@include fade-out-gradiant();
+}
+
+.logo {
+	margin: 0 auto;
+}
+
+
+.main-content-container  {	
+	
+	overflow:hidden;
+	[ui-view] {
+	
+		&.ng-enter {
+		
+			transform:translate3d(0,46px,0);		
+			opacity:0;
+			transition:0.5s ease-out all;
+			
+			&.ng-enter-active {
+				transform:translate3d(0,0,0);	
+				opacity:1;
+			}
+		}	
+		
+	}
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+

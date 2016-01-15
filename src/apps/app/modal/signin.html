@@ -1,0 +1,117 @@
+<!-- Modal -->
+<md-dialog md-theme="{{primaryTheme}}" aria-label="List dialog" ng-class="{'animated shake': signinCtrl.errorMessage}">
+	<form data-ng-submit="signinCtrl.signin(signinCtrl.user)"  name="userform" novalidate>
+		<md-toolbar>
+		<div class="md-toolbar-tools md-whiteframe-z2">
+			<h4 >Login Required</h4>
+		</div>	
+			 	
+		</md-toolbar>
+		<md-whiteframe ng-show="signinCtrl.errorMessage" class="md-whiteframe-z1 error-message">
+		{{ signinCtrl.errorMessage }} 	
+		</md-whiteframe>
+
+		<md-dialog-content class="md-dialog-content" layout="column">
+			 
+			 <md-input-container>
+			 	<label>Email</label>
+			 	<input type="email" name="email" ng-model="signinCtrl.user.email" required/>
+			 	<div ng-messages="userform.email.$error" ng-if="userform.email.$touched">
+			 		<div ng-message="required">Email is required</div>
+			 		<div ng-message="email">This is not a valid email</div>
+			 	</div>
+			 </md-input-container>
+			 <md-input-container>
+			 	<label>Password</label>
+			 	<input type="password" name="password" ng-model="signinCtrl.user.password"/>
+			 </md-input-container>
+			
+		</md-dialog-content>
+		<md-dialog-actions layout="row">
+			<md-button data-ng-click="signinCtrl.changeToSignup()" type="button">Sign up</md-button>
+	        <md-button type="button"  data-dismiss="modal" data-ng-click="signinCtrl.loginCancel()">Close</md-button>
+	        <md-button type="submit" >Sign in</md-button>
+		</md-dialog-actions>
+	</form>
+</md-dialog>
+
+
+<!-- <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" data-ng-click="loginCancel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Login Required</h4>
+		      </div>
+		      <form class="form-horizontal" role="form" data-ng-submit="signin(email, password)" name="userform">
+		      <div class="modal-body">
+				
+		          <div class="form-group">
+			           <label for="email" class="col-sm-2 control-label">Email</label>
+			
+			           <div class="col-sm-10">
+			               <input type="email" class="form-control" id="email" placeholder="Email" data-ng-model="email">
+			           </div>
+		          </div>
+		          <div class="form-group">
+		              <label for="password" class="col-sm-2 control-label">Password</label>
+		
+		              <div class="col-sm-10">
+		                  <input type="password" class="form-control" id="password" placeholder="Password"
+		                         data-ng-model="password">
+		              </div>
+		          </div>
+		          <p data-ng-show="error" class="error">{{ error }}</p>
+		      </div>
+		      <div class="modal-footer">
+		      	<button class="pull-left btn btn-default" data-ng-click="changeToSignup()" type="button">Sign up</button>
+		        <button id="dismiss" type="button" class="btn btn-default" data-dismiss="modal" data-ng-click="loginCancel()">Close</button>
+		        <button type="submit" class="btn btn-primary">Sign in</button>
+		      </div>
+		      </form>
+		    </div>
+		  </div>
+		</div> -->
+		
+		
+<!-- Button trigger modal -->
+<!-- <button id="show" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">
+  Launch demo modal
+</button> -->
+
+
+<!-- Pre modal -->
+<!-- <div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <strong>Sign in</strong>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" role="form" data-ng-submit="signin()">
+                    <div class="form-group">
+                        <label for="email" class="col-sm-2 control-label">Email</label>
+
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="email" placeholder="Email" data-ng-model="email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-sm-2 control-label">Password</label>
+
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="password" placeholder="Password"
+                                   data-ng-model="password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary pull-right">Sign in</button>
+                        </div>
+                    </div>
+                    <p data-ng-show="error" class="error">{{ error }}</p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>-->

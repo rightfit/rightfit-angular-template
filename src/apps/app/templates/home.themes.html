@@ -1,0 +1,10 @@
+<h1> Configure your application's theme for an unified and consistent look</h1>
+<md-content layout layout-fill>
+<md-input-container flex>
+<label> Primary Theme </label>
+<md-select ng-model="mlCtrl.primaryTheme">
+	<md-option ng-value="theme" ng-repeat="theme in mlCtrl.themes"> {{ theme }} </md-option>
+</md-select>
+</md-input-container>
+
+</md-content>

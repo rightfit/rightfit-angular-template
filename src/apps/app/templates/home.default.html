@@ -1,0 +1,20 @@
+
+ <div layout layout-xs="column" layout-wrap > 
+ <md-card ng-repeat="card in cards" flex-xs flex-gt-xs="45" > 	 
+	 
+	 <md-card-title >
+	 		<md-card-title-text>
+				<span class="md-headline" > {{card.title}} </span>
+				<span class="md-subhead" > {{ card.subheader}}</span>
+	 		</md-card-title-text>
+	 		<md-card-title-media >
+		 		<img class="md-media-sm" ng-src="{{card.src}}" />
+		 	</md-card-title-media>
+	 </md-card-title>
+	 <md-card-content>   
+	 		<p>{{card.text}}</p>
+	 </md-card-content>
+ </md-card>
+  
+</div>
+

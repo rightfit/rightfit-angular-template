@@ -1,0 +1,12 @@
+<form name="loginForm" novalidate>
+	<md-input-container>
+		<label> Email </label>
+		<input type="email" ng-model="SigninCtrl.user.email">
+	</md-input-container>
+	
+	<md-input-container>
+		<label> Password </label>
+		<input type="password" ng-model="SigninCtrl.user.password">
+	</md-input-container>
+	<md-button ng-click="SigninCtrl.submit()"> Submit </md-button>
+</form>
