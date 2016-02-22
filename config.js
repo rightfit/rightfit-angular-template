@@ -2,6 +2,7 @@
 var bundleConf = require('./bundles.js');
 
 var build = './build/';
+var buildJs = './build/js/';
 var buildAppJs = './build/app-js/';
 var buildCss = './build/css/';
 var buildImg = './build/img/';
@@ -27,6 +28,7 @@ module.exports = {
 		apps: buildApps,
 		appJs: buildAppJs, 
 		css: buildCss,
+		js: buildJs, //prefer bundle if possible
 		img: buildImg,
 		fonts: buildFonts,
 		bowerDir: bowerDir,
@@ -56,7 +58,16 @@ module.exports = {
 		debug: true
 	},
 	bundles: bundleConf.bundles,
-	styles: bundleConf.styles
+	styles: bundleConf.styles,
+	server: {
+		port: 8080,
+		// You can specify an external host if needed, perhaps for your API calls for instance
+		// a matching path will trigger the proxy request
+		// proxy: {
+		// 	host: "proxy.host.here.com",
+		// 	path: "/api"
+		// }
+	}
 	
 
 }
