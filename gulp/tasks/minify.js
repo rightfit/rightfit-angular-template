@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
-var mincss = require('gulp-minify-css');
-var config = require('../../gulp.conf.js');
+var mincss = require('gulp-cssnano');
+var config = require('../../config.js');
 
 gulp.task('minify:js', function () {
 	return gulp.src(config.paths.appJs + '*.js')

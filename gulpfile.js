@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var requireDir = require('require-dir');
-var config = require('./gulp.conf.js');
+var config = require('./config.js');
 var watcher = require('gulp-watch');
 var runSeq = require('run-sequence');
 

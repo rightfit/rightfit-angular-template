@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var del = require('del');
-var config = require('../../gulp.conf.js')
+var config = require('../../config.js')
 
 gulp.task('clean', function (cb) {
 	return del(config.paths.clean, cb);

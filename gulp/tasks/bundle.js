@@ -1,9 +1,10 @@
 var gulp = require('gulp');
+var watchify = require('watchify');
 var browserify = require('browserify');
 var es = require('event-stream');
 var vSource = require('vinyl-source-stream');
 var glob = require('glob');
-var config = require('../../gulp.conf.js');
+var config = require('../../config.js');
 
 
 gulp.task('bundle', function () {	
@@ -15,7 +16,7 @@ gulp.task('bundle', function () {
 			debug: config.options.debug
 		};
 		conf.entries = glob.sync(bundle['entry']) ;
-		return browserify(conf)
+		return watchify(browserify(conf))
 			.bundle()
 			.on('error', function (err) {
 				console.log(err.message);

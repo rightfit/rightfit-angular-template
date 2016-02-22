@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var runSeq = require('run-sequence');
-var config = require('../../gulp.conf.js');
+var config = require('../../config.js');
 var merge = require('merge-stream');
 var filter = require('gulp-filter');
 var sass = require('gulp-sass');
@@ -33,11 +33,15 @@ gulp.task('build', function () {
 	var img = gulp.src(config.paths.src + 'img/*')
 		.pipe(gulp.dest(config.paths.img));
 	
+	//move js
+	var js = gulp.src(config.paths.src + 'js/*')
+		.pipe(gulp.dest(config.paths.js));
+
 	//move fonts
 	var fonts = gulp.src(config.paths.src + 'fonts/*')
 		.pipe(gulp.dest(config.paths.fonts));
 
-	return merge(apps, css, img, fonts);
+	return merge(apps, js, css, img, fonts);
 })
 
 gulp.task('build:development', function () {
@@ -45,7 +49,8 @@ gulp.task('build:development', function () {
 	return runSeq(
 		'build',
 		['bundle','inject'],
-		'deploy:development'
+		'deploy:development',
+		function () {console.log("All done!");}		
 		)
 
 })
@@ -53,9 +58,10 @@ gulp.task('build:development', function () {
 gulp.task('build:production', function () {
 	return runSeq(
 		'build',
-		['bundle','inject:production'],
+		['bundle','inject'],
 		'minify',
-		'deploy:production'
+		'deploy:production',
+		function () {console.log("All done!");}	
 		);
 
 })

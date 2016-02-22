@@ -6,33 +6,43 @@
 # Setup
 
 ### Install [Node ](https://nodejs.org/en/).
-### Download the template and navigate to that directory with a terminal.
+### Download/fork the template and navigate to that directory with a terminal.
 ### Install dependencies:
 ```
 npm install //Installs node dependencies
 npm install -g bower // Installs bower globally
 bower install //Installs bower dependencies
 ```
+**Tip**: Depending on your node installation and environment npm might timeout and do a partial installation. 
+	Running `npm install` again usually solves most of the installations issues.
 
 ### Install gulp globally for easy access:
 `npm install -g gulp`
 
-### To build and deploy the sample application with a mock authentication backend, just run gulp from the command line:
-`gulp `
+### Usage
+To build the test template run `npm start`. This process might take around a minute the first time, afterwards it will listen for any changes on the source code and recompile (stop with `Ctrl + C`). After it finishes compiling you can see the results on your [localhost](http://localhost)
+From here on you can work on top of the sample application or start from scratch based on the examples provided.
 
-This command will build compiled code in  debug mode. From there on it will keep listening for any changes done to the source code (stop it with `Ctrl + C`).
-To build and deploy with bundled and minification do `gulp publish` instead. 
+**Note:** When you're ready to deploy your code to a production server, run `gulp publish` to build minified code.  
 
-##Bundling 
-The gulpfile is setup to deploy Javascript specified on the bundles.js file. Simply add the path of all custom js code
-needed for your application. You can use the "require" syntax on your source code to avoid needing to include too many js files. Simply include one file on your bundle and from there require all the other needed code.
+The sample application contains an example on how to develop a [material's](https://www.google.com/design/spec/material-design/introduction.html#) compliant SPA application with angular routing and RESTless token authentication (you can either sign-in with mock username 'user@auth' and password 'letmein', or just signup).
 
-### Configure your hosting service to serve the application's resources:
-Configure your server to serve from the (...)/build/debug/ directory. You should be able to see the app in your browser (e.g. http://localhost/apps/app/).
-To deploy into different directories you can customize the paths in "gulp.conf.js".
+**Note:** You can run the server and build tools independent of each other, simply run `npm run server` for the node server and `gulp` for the build tools.
 
-#### Note: Make sure the application has access to the public directory, set up your server to fetch from the public file. Be aware that the url to the public files must match the resource prefix setting on your gulp.conf.js (being "public/" the default value). 
 
-### The sample application contains an example on how to develop a [material's](https://www.google.com/design/spec/material-design/introduction.html#) compliant SPA application with angular routing and RESTless token authentication (you can either sign-in with mock username 'user@user' and password 'letmein', or just signup).
+## Bundling 
+Gulp is setup to bundle Javascript code specified on the bundles.js file. Simply add the path of all custom js code
+needed for your application. You can use the "require" syntax on your source code to avoid needing to include too many js files. Simply include one file on your bundle and from there require all the other needed code. See bundles.js for more details. 
+
+## Server configuration
+Configure your hosting service to serve the application's resources:
+The template comes with a lightweight Node server for fast development, however it is recommended to use a server application (e.g. Apache, Nginx) to serve static files. 
+
+Configure your server to serve from the (...)/dist/debug/apps/<your-app-name> directory.
+Also, set up an Alias for public resources such as vendor Javascript, css and images. By default, they will be under the "/public/" Alias and reside in the (...)/dist/debug/public/ directory. 
+
+To change the value of the source and destination directories you can modify the config.js file, make sure to make a backup to avoid unforseen issues.   
+
+
 
  

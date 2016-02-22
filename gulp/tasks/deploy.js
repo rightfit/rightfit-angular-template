@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var config = require('../../gulp.conf.js');
+var config = require('../../config.js');
 var merge = require('merge-stream');
 var changed = require('gulp-changed');
 
@@ -11,6 +11,9 @@ var deploy  = function (env) {
 	var appJS = gulp.src(config.paths.appJs + '*.js')
 		.pipe(gulp.dest(config.paths[env].appJs)); //move app-js to end directory
 	
+	var js = gulp.src(config.paths.js + '*.js')
+		.pipe(gulp.dest(config.paths[env].js)); //move unbundled js to end directory
+
 	var css = gulp.src(config.paths.css + '*.css')
 		.pipe(gulp.dest(config.paths[env].css)); //move css to end directory
 	
@@ -24,7 +27,7 @@ var deploy  = function (env) {
 	//move bower components
 	var bowerTsk = gulp.src(config.paths.bowerDir + '**/*')
 		.pipe(gulp.dest(config.paths[env].publicBase + 'bower_components'));
-	return merge(src, appJS, css, img, bowerTsk);
+	return merge(src, js, appJS, css, img, bowerTsk);
 	
 }
 gulp.task('deploy:development', function () {
