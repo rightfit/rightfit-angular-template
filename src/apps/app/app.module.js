@@ -11,12 +11,11 @@ angular.module('app', [
 }])
 .run(require('./AuthHandler.js'));
 
-
 /*load app components using the require syntax 
 	for multiple files use bulk-require ( e.g. require('bulk-require')(__dirname, ['./controllers/*']); )
 */
 //include themes
-require('./themes.js')
+require('./themes.js') 
 //include constants
 require('./constants.js');
 //Auth handler

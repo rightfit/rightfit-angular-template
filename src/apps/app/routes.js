@@ -14,7 +14,7 @@ angular.module('app')
 					}
 				}
 			})*/
-			.state('logout', {
+			.state('logout', { 
 				url:'/logout',
 				//views:
 				controller: ['Auth','$state', function (Auth, $state) {

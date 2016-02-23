@@ -13,7 +13,7 @@ angular.module('e2e', [
 	};
 
 	var session = {};
-	var confirmationCode = {};
+	var confirmationCode = {}; 
 	
 	function makeid(length = 5)
 	{

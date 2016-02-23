@@ -7,11 +7,9 @@ var glob = require('glob');
 var config = require('../../config.js');
 
 
-gulp.task('bundle', function () {	
 
-	
+gulp.task('bundle', function () {		
 	var tasks = config.bundles.map(function (bundle) {
-
 		var conf = {
 			debug: config.options.debug
 		};
@@ -29,3 +27,4 @@ gulp.task('bundle', function () {
 	
 	return es.merge.apply(null, tasks);
 });
+
