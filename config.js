@@ -40,7 +40,7 @@ module.exports = {
 	bundles: bundleConf.bundles,
 	styles: bundleConf.styles,
 	server: {
-		port: 8080,
+		port: 80,
 		// You can specify an external host if needed, perhaps for your API calls for instance
 		// a matching path will trigger the proxy request
 		// proxy: {
