@@ -1,7 +1,5 @@
 var gulp = require('gulp');
 var runSeq = require('run-sequence');
-var config = require('../../config.js');
-var constant = require('../const.js');
 var utils = require('../utils.js');
 
 

@@ -1,38 +1,18 @@
 
 var bundleConf = require('./bundles.js');
 
-var build = './build/';
-var buildJs = './build/js/';
-var buildAppJs = './build/app-js/';
-var buildCss = './build/css/';
-var buildImg = './build/img/';
-var buildFonts = './build/fonts/'
 var buildDev = './dist/debug/';
 var buildProd = './dist/production/';
-var buildApps = './build/apps/';
-var cleanPath = ['./build/*', '!./dist/debug/**' , '!./dist/production/**'];
 var src = './src/';
 var bowerDir = './bower_components/';
 var resPrefix = 'public/' //trailing slash is required
 
 
 module.exports = {
-	//build configuration
-	watch: ['bundles.js', 
-	        src + 'apps/**/*.js',
-	        src + 'apps/**/*.html',
-	        src + 'css/*.{css,scss}'],
+
 	paths : {
-		src: src,
-		base: build,
-		apps: buildApps,
-		appJs: buildAppJs, 
-		css: buildCss,
-		js: buildJs, //prefer bundle if possible
-		img: buildImg,
-		fonts: buildFonts,
+		src: src,		
 		bowerDir: bowerDir,
-		clean: cleanPath,
 		resPrefix: resPrefix,
 		development: {
 			base: buildDev,

@@ -7,6 +7,7 @@ var uglify = require("gulp-uglify");
 var mincss = require("gulp-cssnano");
 var filter = require("gulp-filter");
 var sass = require("gulp-sass");
+var autoprefixer = require('gulp-autoprefixer')
 var sourcemaps = require("gulp-sourcemaps");
 var concat = require("gulp-concat");
 var browserify = require("browserify");
@@ -15,11 +16,13 @@ var assign = require("lodash/fp/assign");
 var glob = require("glob");
 var gutil = require('gulp-util');
 var vSource = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
 var inject = require('gulp-inject');
 var mainBowerFiles = require('main-bower-files');
 var changed = require('gulp-changed');
 var merge = require('merge-stream');
 var watcher = require('gulp-watch');
+
 
 
 
@@ -71,11 +74,14 @@ function bundleJS (b, bundle) {
 			this.emit('end')
 		})
 		.pipe(vSource(bundle['out']))
+		.pipe(buffer())
+		//minimize if in production
+		.pipe(gulpif(!DEBUG, uglify()))
 		.pipe(gulp.dest(config.paths[ENV].appJs));
 }
 //build js
 function buildJS(watch) {
-
+	gutil.log("Building js...")
 	var tasks = config.bundles.map(function (bundle) {
 
 		var conf = {
@@ -94,11 +100,15 @@ function buildJS(watch) {
 				return bundleJS(b, bundle);	
 			}); // on any dep update, runs the bundler
 			b.on('log', gutil.log); // output build logs to terminal
+			b.on("time", function(time) {
+				var msg = "Finished bundle " + bundle['out'] + " after " + time + " ms";
+				gutil.log(msg); 
+			});
 		}
-	    bundleJS(b, bundle);
+	    return bundleJS(b, bundle);
 
 	});	
-	return tasks;
+	return merge(tasks).on("end", function() { gutil.log("Done building js") });
 }
 
 //build sass
@@ -115,9 +125,13 @@ function buildCSS() {
 		.pipe(stylesFilter)
 		.pipe(sourcemaps.init())
 		.pipe(concat(config.styles.out))
+		.pipe(autoprefixer({
+			browsers: ['last 2 versions'],
+			cascade:false
+		}))
 		.pipe(sourcemaps.write())
 		//minimize if in production
-		.pipe(gulpif(!DEBUG, minifyCSS))
+		.pipe(gulpif(!DEBUG, mincss()))
 		.pipe(gulp.dest(config.paths[ENV].css))
 		.on("end", function() { gutil.log("Done bulding css") });
 
