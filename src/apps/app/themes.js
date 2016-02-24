@@ -11,7 +11,7 @@ angular.module('app')
 		.primaryPalette('orange')
 		.accentPalette('indigo');
 		
-	$mdThemingProvider.theme('indigo')
+	$mdThemingProvider.theme('indigo') 
 	.primaryPalette('indigo')
 	.accentPalette('orange');
 	

@@ -1,14 +1,10 @@
 var gulp = require('gulp');
 var del = require('del');
 var config = require('../../config.js')
+var constant = require('../const.js');
+
 
 gulp.task('clean', function (cb) {
-	return del(config.paths.clean, cb);
+	return del(config.paths[constant.env].base, cb);
 })
 
-gulp.task('clean:development',['clean'], function (cb) {
-	return del(config.paths.development.base, cb);
-});
-gulp.task('clean:production',['clean'], function (cb) {
-	return del(config.paths.production.base, cb);
-});
