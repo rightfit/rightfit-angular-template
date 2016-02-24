@@ -1,6 +1,7 @@
 var config = require("../config.js");
 var constants = require("./const.js")
 var gulp = require("gulp");
+var gulpif = require("gulp-if");
 var lazypipe = require("lazypipe");
 var uglify = require("gulp-uglify");
 var mincss = require("gulp-cssnano");
@@ -71,7 +72,6 @@ function bundleJS (b, bundle) {
 		})
 		.pipe(vSource(bundle['out']))
 		.pipe(gulp.dest(config.paths[ENV].appJs));
-
 }
 //build js
 function buildJS(watch) {
@@ -107,6 +107,7 @@ function buildCSS() {
 	//compile and relocate css 
 	var sassFilter = filter('*.scss', {restore: true});
 	var stylesFilter = filter(config.styles.select);
+	gutil.log("Bulding css...");
 	return gulp.src(config.paths.src + 'css/*')
 		.pipe(sassFilter)
 		.pipe(sass().on('error', sass.logError))
@@ -115,7 +116,10 @@ function buildCSS() {
 		.pipe(sourcemaps.init())
 		.pipe(concat(config.styles.out))
 		.pipe(sourcemaps.write())
-		.pipe(gulp.dest(config.paths[ENV].css));
+		//minimize if in production
+		.pipe(gulpif(!DEBUG, minifyCSS))
+		.pipe(gulp.dest(config.paths[ENV].css))
+		.on("end", function() { gutil.log("Done bulding css") });
 
 }
 
@@ -136,40 +140,48 @@ function buildHtml() {
 	//only inject index.html files, ignore everything else
 	//maybe make it configurable? 	
 	var injectFilter = filter('**/index.html', {restore: true});	
-
+	
+	gutil.log("Bulding html...");
 	return gulp.src(apps_src)
 		.pipe(injectFilter)
 		.pipe(injectHtml())
 		.pipe(injectFilter.restore)
 		.pipe(gulp.dest(config.paths[ENV].base + 'apps/'))
+		.on("end", function() { gutil.log("Done bulding html") });
 }
 
 //build img (move them to dist)
 function buildImg() {
+	gutil.log("Bulding images...");
 	return gulp.src(config.paths.src + 'img/*')
 		.pipe(changed(config.paths[ENV].img))
-		.pipe(gulp.dest(config.paths[ENV].img)); //move unchanged images to end directory
+		.pipe(gulp.dest(config.paths[ENV].img)) //move unchanged images to end directory
+		.on("end", function() { gutil.log("Done bulding imgs") });
 }
 
 //build fonts (move them to dist)
 function buildFonts() {
+	gutil.log("Bulding fonts...");
 	return gulp.src(config.paths.src + 'fonts/*')
 		.pipe(changed(config.paths[ENV].fonts))
-		.pipe(gulp.dest(config.paths[ENV].fonts)); //move unchanged fonts to end directory
+		.pipe(gulp.dest(config.paths[ENV].fonts)) //move unchanged fonts to end directory
+		.on("end", function() { gutil.log("Done bulding fonts") });
 }
 
 //build vendor js (including bower components) (move them to dist)
 function buildVendor() {
+	gutil.log("Bulding vendor scripts...");
 	var js =  gulp.src(config.paths.src + 'js/*')
-		.pipe(changed(config.paths[ENV].fonts))
-		.pipe(gulp.dest(config.paths[ENV].fonts)); //move unchanged js to end directory
+		.pipe(changed(config.paths[ENV].js))
+		.pipe(gulp.dest(config.paths[ENV].js)); //move unchanged js to end directory
 
 
 	var bower = gulp.src(mainBowerFiles(mbf_opts),  { base: config.paths.bowerDir })
 		.pipe(changed(config.paths[ENV].publicBase + 'bower_components'))
 		.pipe(gulp.dest(config.paths[ENV].publicBase + 'bower_components'));
 
-	return merge(js, bower);
+	return merge(js, bower)
+		.on("end", function() { gutil.log("Done bulding vendor scripts") });
 }
 
 
@@ -190,7 +202,7 @@ function minifyJS() {
 function startBuild(name, args) {
 	args = args || [];
 	if (build[name] != undefined) {
-		build[name].apply(this, args);
+		return build[name].apply(this, args);
 	}
 }
 
@@ -198,7 +210,6 @@ function startBuild(name, args) {
 //helper function for watching builds based on resource type
 function watchBuild (name, src) {
 	if (!src) src = config.paths.src + name + '/*';
-	console.log(src);
 	watcher(src, function(){
 		startBuild(name);
 	});
