@@ -23,7 +23,7 @@ bower install //Installs bower dependencies
 To build the test template run `npm start`. This process might take around a minute the first time, afterwards it will listen for any changes on the source code and recompile (stop with `Ctrl + C`). After it finishes compiling you can see the results on your [localhost](http://localhost)
 From here on you can work on top of the sample application or start from scratch based on the examples provided.
 
-**Note:** When you're ready to deploy your code to a production server, run `gulp publish` to build minified code.  
+**Note:** When you're ready to deploy your code to a production server, run `gulp build --production` to build minified code. The application will be compiled in the production directory inside the dist directory.   
 
 The sample application contains an example on how to develop a [material's](https://www.google.com/design/spec/material-design/introduction.html#) compliant SPA application with angular routing and RESTless token authentication (you can either sign-in with mock username 'user@auth' and password 'letmein', or just signup).
 
@@ -31,7 +31,7 @@ The sample application contains an example on how to develop a [material's](http
 
 
 ## Bundling 
-Gulp is setup to bundle Javascript code specified on the bundles.js file. Simply add the path of all custom js code
+The template is setup to bundle Javascript code specified on the bundles.js file. Simply add the path of all custom js code
 needed for your application. You can use the "require" syntax on your source code to avoid needing to include too many js files. Simply include one file on your bundle and from there require all the other needed code. See bundles.js for more details. 
 
 ## Server configuration
@@ -40,6 +40,17 @@ The template comes with a lightweight Node server for fast development, however 
 
 Configure your server to serve from the (...)/dist/debug/apps/<your-app-name> directory.
 Also, set up an Alias for public resources such as vendor Javascript, css and images. By default, they will be under the "/public/" Alias and reside in the (...)/dist/debug/public/ directory. 
+
+### Apache's virtual host configuration example:
+
+```
+<VirtualHost *:80>
+	ServerName templatedemo.myserver.com
+	DocumentRoot /var/www/rightfit-angular-template/dist/debug/apps/app/
+	
+	Alias /public/	/var/www/rightfit-angular-template/dist/debug/public/
+</VirtualHost>
+```
 
 To change the value of the source and destination directories you can modify the config.js file, make sure to make a backup to avoid unforseen issues.   
 
