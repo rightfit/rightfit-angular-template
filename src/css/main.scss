@@ -29,6 +29,10 @@ $md_layout_padding: 8px; //default padding for md layout padding option
 	Agnostic css for convenient class styling
 */
 
+.no-hover-bg:hover {
+	background-color:transparent  !important;
+}
+
 .overflow-hidden {
 	overflow: hidden;
 }
@@ -78,6 +82,7 @@ md-sidenav.md-closed.md-locked-open {
 	margin: 10px auto;
 	height: 65px;
 }
+
 
 
 .main-content-container  {	
