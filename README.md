@@ -1,7 +1,7 @@
 # Angular materials template 
 #### Template for developing RESTless Single Page Applications powered by NodeJS. 
 #### Configured to pre-compile Sass and ES2015 files and to minimize production-ready code.
-#### It includes AngularJS and several commonly used modules such as ui-router, ui-boostrap and ngMaterial for the development of rich and responsive interfaces.
+#### It includes AngularJS and several commonly used modules such as ui-router and ngMaterial for the development of rich and responsive interfaces.
 
 Check our [demo over here](http://templatedemo.rightfit.it)
 
