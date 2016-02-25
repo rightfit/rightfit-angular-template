@@ -1,7 +1,7 @@
 module.exports = ['$rootScope', '$state', '$mdDialog', 'baseConfig','Auth',
       function ($rootScope, $state, $mdDialog, baseConfig, Auth) {
 	$rootScope.$on('event:auth-loginRequired', function () {
-		console.log('login required');
+		//onsole.log('login required');
 		//open signin modal
 		var modalConf = {
 			templateUrl: baseConfig.modalBase + 'signin.html',	
@@ -21,19 +21,19 @@ module.exports = ['$rootScope', '$state', '$mdDialog', 'baseConfig','Auth',
 		
 	});
 	$rootScope.$on('event:auth-loginConfirmed', function() {
-		console.log('loginConfirmed');
+		//console.log('loginConfirmed');
 	});
 	
 	$rootScope.$on('event:auth-loginCancelled', function() {
-		console.log('loginCancelled');
+		//console.log('loginCancelled');
 	});
 	
 	$rootScope.$on('event:auth-signupConfirmed', function() {
-		console.log('signUp Confirmed');
+		//console.log('signUp Confirmed');
 	});
 	
 	$rootScope.$on('event:auth-confirmRequired', function() {
-		console.log('confirm Requires');
+		//console.log('confirm Requires');
 		$mdDialog.cancel();
 		var modalConf = {
 				templateUrl: baseConfig.modalBase + 'confirm.html',	
@@ -46,12 +46,12 @@ module.exports = ['$rootScope', '$state', '$mdDialog', 'baseConfig','Auth',
 	});
 	
 	$rootScope.$on('event:auth-confirmConfirmed', function() {
-		console.log('confirm Confirmed');		
+		//console.log('confirm Confirmed');		
 	});
 	
 	
 	$rootScope.$on('$stateChangeError', 
 			function (event, toState, toParams, fromState, fromParams, error) {
-			console.log(event, error);
+			//console.log(event, error);
 	})
 }]

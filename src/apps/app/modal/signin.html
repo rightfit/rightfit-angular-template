@@ -12,10 +12,10 @@
 		</md-whiteframe>
 
 		<md-dialog-content class="md-dialog-content" layout="column">
-			 
 			 <md-input-container>
 			 	<label>Email</label>
 			 	<input type="email" name="email" ng-model="signinCtrl.user.email" required/>
+			 	<div class="hint">Try username "user@auth" </div>
 			 	<div ng-messages="userform.email.$error" ng-if="userform.email.$touched">
 			 		<div ng-message="required">Email is required</div>
 			 		<div ng-message="email">This is not a valid email</div>
@@ -24,6 +24,7 @@
 			 <md-input-container>
 			 	<label>Password</label>
 			 	<input type="password" name="password" ng-model="signinCtrl.user.password"/>
+			 	<div class="hint">Try password "letmein" </div>
 			 </md-input-container>
 			
 		</md-dialog-content>

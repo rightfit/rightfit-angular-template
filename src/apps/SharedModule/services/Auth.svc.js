@@ -43,7 +43,7 @@ angular.module('comrise.shared')
 	        opened the modal on the first place
         */
         //authService.loginConfirmed(); 
-        console.log('login success');
+        //console.log('login success');
         return res.data;
     }
 	
@@ -52,14 +52,14 @@ angular.module('comrise.shared')
         $localStorage.token = res.data.token;
         //authService.loginConfirmed();
         $rootScope.$broadcast('event:auth-signupConfirmed', {});
-        console.log('signup success');
+        //console.log('signup success');
         return res.data;
     }
 	var _successConfirm = function(res) {
         //$localStorage.token = res.token;
         //broadcast this as we cannot alter authService.
         $rootScope.$broadcast('event:auth-confirmConfirmed', {});
-        console.log('confirm success');
+        //console.log('confirm success');
         return res.data;
     }
 	var _authConfig = {
@@ -141,8 +141,8 @@ angular.module('comrise.shared')
             } else if (response.status === 423) {
             	var deferred = $q.defer();
             	httpBuffer.append(response.config, deferred);
-            	console.log(httpBuffer);
-            	console.log(deferred);
+            	//console.log(httpBuffer);
+            	//console.log(deferred);
             	
                 $rootScope.$broadcast('event:auth-confirmRequired', response);
                 return deferred.promise;

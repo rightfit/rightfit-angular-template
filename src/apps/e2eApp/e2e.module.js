@@ -31,9 +31,9 @@ angular.module('e2e', [
 		if (!session[token]) {
 			return [401]//return forbidden
 		}
-		else if(users[session[token]].active == false){
-			return [423];//logged in but not confirmed 
-		}
+		// else if(users[session[token]].active == false){
+		// 	return [423];//logged in but not confirmed 
+		// }
 		else {
 			return [200];
 		}
