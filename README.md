@@ -3,13 +3,13 @@
 #### Configured to pre-compile Sass and ES2015 files and to minimize production-ready code.
 #### It includes AngularJS and several commonly used modules such as ui-router and ngMaterial for the development of rich and responsive interfaces.
 
-Check our [demo over here](http://templatedemo.rightfit.it)
+#### Check our [demo over here](http://templatedemo.rightfit.it).
 
-# Setup
+## Setup
 
-### Install [Node ](https://nodejs.org/en/).
-### Download/fork the template and navigate to that directory with a terminal.
-### Install dependencies:
+#### Install [Node](https://nodejs.org/en/).
+#### Download/fork the template and navigate to that directory with a terminal.
+#### Install dependencies:
 ```
 npm install //Installs node dependencies
 npm install -g bower // Installs bower globally
@@ -18,10 +18,10 @@ bower install //Installs bower dependencies
 **Tip**: Depending on your node installation and environment npm might timeout and do a partial installation. 
 	Running `npm install` again usually solves most of the installations issues.
 
-### Install gulp globally for easy access:
+#### Install gulp globally for easy access:
 `npm install -g gulp`
 
-### Usage
+## Usage
 To build the test template run `npm start`. This process might take around a minute the first time, afterwards it will listen for any changes on the source code and recompile (stop with `Ctrl + C`). After it finishes compiling you can see the results on your [localhost](http://localhost)
 From here on you can work on top of the sample application or start from scratch based on the examples provided.
 
@@ -43,7 +43,7 @@ The template comes with a lightweight Node server for fast development, however 
 Configure your server to serve from the (...)/dist/debug/apps/<your-app-name> directory.
 Also, set up an Alias for public resources such as vendor Javascript, css and images. By default, they will be under the "/public/" Alias and reside in the (...)/dist/debug/public/ directory. 
 
-### Apache's virtual host configuration example:
+## Apache's virtual host configuration example:
 
 ```
 <VirtualHost *:80>
