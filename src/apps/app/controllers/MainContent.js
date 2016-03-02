@@ -12,7 +12,7 @@ angular.module('app')
                 {
                 	src: '/public/img/gulpLogo.png',
                 	title: 'Automize builds with Gulp',
-                	text: 'This template is powered by Gulp\'s tasks builder. Modify gulp.conf.js to configure the building process.'
+                	text: 'This template is powered by Gulp\'s tasks builder. Modify config.js to configure the building process.'
                 },
                 {
                 	src: '/public/img/angular-logo.svg',
