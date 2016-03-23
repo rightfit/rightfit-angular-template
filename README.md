@@ -3,7 +3,7 @@
 #### Configured to pre-compile Sass and ES2015 files and to minimize production-ready code.
 #### It includes AngularJS and several commonly used modules such as ui-router and ngMaterial for the development of rich and responsive interfaces.
 
-#### Check our [demo over here](http://templatedemo.rightfit.it).
+#### Check our [demo over here](http://template.demo.rightfit.it).
 
 ## Setup
 
